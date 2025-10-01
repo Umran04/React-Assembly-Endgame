@@ -10,6 +10,32 @@ body{
     height: 100vh;
     color: #D9D9D9;
     background-color: #262626;
-    /*add back ground and font family -> import in html*/
+    font-family: 'Hanken Grotesk', Arial, Helvetica, sans-serif;
+    /* border: 1px solid red; */
+}
 
+#root{
+    /* border: 1px green solid; */
+    width: 100vw;
+    
+}
+
+header{
+    text-align: center;
+    
+    /* border: 1px solid yellow; */
+    
+}
+
+header > h1{
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #F9FAD4;
+}
+
+header > p{
+    font-size: 1rem;
+    max-width: 352px;
+    margin-left:auto ;
+    margin-right: auto;
 }
