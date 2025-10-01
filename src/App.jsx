@@ -4,9 +4,15 @@ import { languages } from './languages.js'
 
 export default function App(){
 
-    const [currentWord,setCurrentWord] = useState ('react')
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
-    const letters = currentWord.split('').map((letter) => { return <span className="letters">{letter.toUpperCase()}</span>
+    const keyboard = alphabet.split("").map((letter) => {
+        return <button className="keyboard--letters">{letter.toUpperCase()}</button>}
+    )
+    const [currentWord,setCurrentWord] = useState('react')
+
+    const letters = currentWord.split('').map((letter) => { 
+        return <span className="letters">{letter.toUpperCase()}</span>
     })
    
 
@@ -34,7 +40,7 @@ export default function App(){
 
         <section className="letters--container">{letters}</section>
 
-        <section className="keyboard"> KEYBOARD</section>
+        <section className="keyboard">{keyboard}</section>
     </main>
     )
 }
