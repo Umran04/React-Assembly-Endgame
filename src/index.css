@@ -20,9 +20,15 @@ body{
     
 }
 
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 header{
     text-align: center;
-    
     /* border: 1px solid yellow; */
     
 }
@@ -38,4 +44,18 @@ header > p{
     max-width: 352px;
     margin-left:auto ;
     margin-right: auto;
+    color: #8E8E8E;
+    margin-bottom: 20px;
+}
+
+status{
+    background-color: #10A95B;
+    width: 352px;
+    height: 59px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+
 }
