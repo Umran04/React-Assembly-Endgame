@@ -48,7 +48,7 @@ header > p{
     margin-bottom: 20px;
 }
 
-status{
+.game--status{
     background-color: #10A95B;
     width: 352px;
     height: 59px;
@@ -57,5 +57,15 @@ status{
     justify-content: center;
     align-items: center;
     border-radius: 5px;
+    color: #F9FAD4;
 
 }
+.game--status > p, h2{
+    margin: 5px;
+    
+}
+
+.game--status > h2{
+    font-size: 1.25rem;
+}
+
