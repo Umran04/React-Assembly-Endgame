@@ -4,6 +4,14 @@ import { languages } from './languages.js'
 export default function App(){
 
     console.log(languages)
+
+    const languageList = languages.map( (language) => { return <span style={ {backgroundColor: language.backgroundColor, color:language.color}}>
+        {language.name}
+        </span>
+        
+    })
+
+
     return(
     <main>
         <header>
@@ -15,6 +23,9 @@ export default function App(){
             <h2>You win</h2>
             <p> Well done</p>
         </section>
+
+
+        <section className="language--section">{languageList}</section>
     </main>
     )
 }

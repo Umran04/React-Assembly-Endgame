@@ -69,3 +69,22 @@ header > p{
     font-size: 1.25rem;
 }
 
+.language--section{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 375px;
+    margin-top: 30px;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    /* border: 1px solid red; */
+}
+
+span{
+    padding: 7px;
+    border-radius: 3px;
+    font-weight: bolder;
+}
+
+
+
