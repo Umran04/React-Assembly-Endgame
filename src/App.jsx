@@ -1,11 +1,17 @@
 import React from "react";
+import { useState } from "react";
 import { languages } from './languages.js'
 
 export default function App(){
 
-    console.log(languages)
+    const [currentWord,setCurrentWord] = useState ('react')
 
-    const languageList = languages.map( (language) => { return <span style={ {backgroundColor: language.backgroundColor, color:language.color}}>
+    const letters = currentWord.split('').map((letter) => { return <span className="letters">{letter.toUpperCase()}</span>
+    })
+   
+
+    const languageList = languages.map( (language) => { return <span className="chips" key={language.name} 
+        style={ {backgroundColor: language.backgroundColor, color:language.color}}>
         {language.name}
         </span>
         
@@ -23,9 +29,12 @@ export default function App(){
             <h2>You win</h2>
             <p> Well done</p>
         </section>
-
-
+        
         <section className="language--section">{languageList}</section>
+
+        <section className="letters--container">{letters}</section>
+
+        <section className="keyboard"> KEYBOARD</section>
     </main>
     )
 }
