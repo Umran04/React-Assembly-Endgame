@@ -1,27 +1,41 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { languages } from './languages.js'
 
 export default function App(){
 
     const alphabet = 'abcdefghijklmnopqrstuvwxyz'
-
-    const keyboard = alphabet.split("").map((letter) => {
-        return <button className="keyboard--letters">{letter.toUpperCase()}</button>}
-    )
     const [currentWord,setCurrentWord] = useState('react')
+    const [userGuessLetter,setUserGuessLetter] = useState([])
+    console.log(userGuessLetter)
 
+    
+    
+    const languageList = languages.map( (language) => { return <span className="chips" key={language.name} 
+    style={ {backgroundColor: language.backgroundColor, color:language.color}}>
+    {language.name}
+    </span>
+    })
+    
     const letters = currentWord.split('').map((letter) => { 
         return <span className="letters">{letter.toUpperCase()}</span>
     })
-   
+    
+    const keyboard = alphabet.split("").map((letter) => {
+        return <button onClick={() => userClick(letter)} className="keyboard--letters">{letter.toUpperCase()}</button>}
+    )
 
-    const languageList = languages.map( (language) => { return <span className="chips" key={language.name} 
-        style={ {backgroundColor: language.backgroundColor, color:language.color}}>
-        {language.name}
-        </span>
-        
-    })
+    function userClick(newLetter){
+        setUserGuessLetter(prevLetter =>
+            prevLetter.includes(newLetter) ? prevLetter : [...prevLetter, newLetter] //checks if the letter is already in  the arr, if yes then it will NOT add it
+        )
+    
+    }
+
+    //  useEffect(() => {
+    //     console.log('User guesses the letter ' + userGuessLetter)
+    //  }, [userGuessLetter])
+
 
 
     return(
