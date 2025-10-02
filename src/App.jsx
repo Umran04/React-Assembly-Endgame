@@ -41,6 +41,8 @@ export default function App(){
         <section className="letters--container">{letters}</section>
 
         <section className="keyboard">{keyboard}</section>
+
+        <button className="newGame--btn">New Game</button>
     </main>
     )
 }

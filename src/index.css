@@ -15,6 +15,10 @@ body{
     /* border: 1px solid red; */
 }
 
+button{
+    cursor: pointer;
+}
+
 /* #root{
     border: 1px green solid;
     width: 600px;
@@ -134,6 +138,19 @@ section.language--section{
     /* font-weight: bold; */
     background-color: #FCBA29;
     
+}
+
+.newGame--btn{
+    background-color: #1185E5;
+    width: 228px;
+    height: 40px;
+    margin-top: 50px;
+    border: none;
+    border-radius: 3px;
+    padding: 10px;
+    font-size: 0.975rem;
+    font-weight: 600;
+    color: #1E1E1E;
 }
 
 
