@@ -8,7 +8,7 @@ export default function App(){
     const alphabet = 'abcdefghijklmnopqrstuvwxyz'
     const [currentWord,setCurrentWord] = useState('react')
     const [userGuessLetter,setUserGuessLetter] = useState([])
-    console.log(userGuessLetter)
+    
 
     
     
@@ -18,17 +18,30 @@ export default function App(){
     {language.name}
     </span>
     })
+
+    function correctlyGuessedLetter(letter){
+        if(userGuessLetter.includes(letter) && currentWord.includes(letter)){
+            return true
+        }
+    }
     
     const letters = currentWord.split('').map((letter) => { 
-        return <span className="letters">{letter.toUpperCase()}</span>
+        return <span className="letters">{ correctlyGuessedLetter(letter) && letter.toUpperCase()}</span>
     })
+
     
     const keyboard = alphabet.split("").map((letter) => {
+        //cant write notes next to clsx stuff but this basically meanes, line 1 is just default keyboard--letters classname
+        //line 2 is if the letter has been guessed and is in the word then make the letter green (.correct css class)
+        //line 3 if the letter has been guessed and is not in the word then make it red (.wrong css class)
         return <button onClick={() => userClick(letter)} className={clsx(
             "keyboard--letters",
             userGuessLetter.includes(letter) && currentWord.includes(letter) && "Correct",
-            userGuessLetter.includes(letter) && !currentWord.includes(letter) && "Wrong"
-        )}>{letter.toUpperCase()}</button>}
+            userGuessLetter.includes(letter) && !currentWord.includes(letter) && "Wrong")}>
+            
+            {letter.toUpperCase()} 
+            </button>
+        }
     )
 
     function userClick(newLetter){
