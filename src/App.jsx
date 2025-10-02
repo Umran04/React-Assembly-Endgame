@@ -8,28 +8,28 @@ export default function App(){
     const alphabet = 'abcdefghijklmnopqrstuvwxyz'
     const [currentWord,setCurrentWord] = useState('react')
     const [userGuessLetter,setUserGuessLetter] = useState([])
+
+    
+    //get the number of wrong guesses byt filtering out the letters guessed which ARE not in the word
+    //then use .length to show how many wrong guesses there has been 
+    const wrongGuessCount = userGuessLetter.filter(letter => !currentWord.includes(letter)).length
     
 
     
     
-    
+    /*LANGUAGE LIST*/
     const languageList = languages.map( (language) => { return <span className="chips" key={language.name} 
     style={ {backgroundColor: language.backgroundColor, color:language.color}}>
     {language.name}
     </span>
     })
 
-    function correctlyGuessedLetter(letter){
-        if(userGuessLetter.includes(letter) && currentWord.includes(letter)){
-            return true
-        }
-    }
-    
+    /*THE WORD / LETTERS TO BE DISPLAYED IF GUESSED CORRECTLY*/
     const letters = currentWord.split('').map((letter) => { 
-        return <span className="letters">{ correctlyGuessedLetter(letter) && letter.toUpperCase()}</span>
+        return <span className="letters">{ userGuessLetter.includes(letter) && letter.toUpperCase()}</span>
     })
 
-    
+    /*KEYBOARD*/
     const keyboard = alphabet.split("").map((letter) => {
         //cant write notes next to clsx stuff but this basically meanes, line 1 is just default keyboard--letters classname
         //line 2 is if the letter has been guessed and is in the word then make the letter green (.correct css class)
@@ -44,6 +44,7 @@ export default function App(){
         }
     )
 
+    /* FUNCTINOALITY THAT FOR KEYBOARD BUTTON CLICK*/
     function userClick(newLetter){
         setUserGuessLetter(prevLetter =>
             prevLetter.includes(newLetter) ? prevLetter : [...prevLetter, newLetter] //checks if the letter is already in  the arr, if yes then it will NOT add it
