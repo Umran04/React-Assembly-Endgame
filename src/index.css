@@ -140,6 +140,13 @@ section.language--section{
     
 }
 
+.Correct{
+    background-color: #10A95B;
+}
+
+.Wrong{
+    background-color: #EC5D49;
+}
 .newGame--btn{
     background-color: #1185E5;
     width: 228px;

@@ -1,4 +1,5 @@
 import React from "react";
+import { clsx } from "clsx";
 import { useState, useEffect } from "react";
 import { languages } from './languages.js'
 
@@ -9,6 +10,7 @@ export default function App(){
     const [userGuessLetter,setUserGuessLetter] = useState([])
     console.log(userGuessLetter)
 
+    
     
     
     const languageList = languages.map( (language) => { return <span className="chips" key={language.name} 
@@ -22,7 +24,11 @@ export default function App(){
     })
     
     const keyboard = alphabet.split("").map((letter) => {
-        return <button onClick={() => userClick(letter)} className="keyboard--letters">{letter.toUpperCase()}</button>}
+        return <button onClick={() => userClick(letter)} className={clsx(
+            "keyboard--letters",
+            userGuessLetter.includes(letter) && currentWord.includes(letter) && "Correct",
+            userGuessLetter.includes(letter) && !currentWord.includes(letter) && "Wrong"
+        )}>{letter.toUpperCase()}</button>}
     )
 
     function userClick(newLetter){
