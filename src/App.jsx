@@ -6,7 +6,7 @@ import { languages } from './languages.js'
 export default function App(){
 
     const alphabet = 'abcdefghijklmnopqrstuvwxyz'
-    const [currentWord,setCurrentWord] = useState('react')
+    const [currentWord,setCurrentWord] = useState('loop')
     const [userGuessLetter,setUserGuessLetter] = useState([])
 
     
@@ -14,11 +14,15 @@ export default function App(){
     //then use .length to show how many wrong guesses there has been 
     const wrongGuessCount = userGuessLetter.filter(letter => !currentWord.includes(letter)).length
     
+    
+
+    const correctGuess = currentWord.split("").every(letter => userGuessLetter.includes(letter)) // <--- could have also used this logic instead of reversing the wrongGuessCount logic
+
     //opposite of prev line, conditions to conditionally render New Game button
-    const correctGuessCount = userGuessLetter.filter(letter => currentWord.includes(letter)).length === currentWord.length
+    
 
     let isGameOver = false
-    if(wrongGuessCount === languages.length - 1 || correctGuessCount){
+    if(wrongGuessCount === languages.length - 1 || correctGuess){ // checks length of language array so dynamicaly calcs how many wrong guesses are allowed 
         isGameOver = true
     }
 
@@ -77,9 +81,6 @@ export default function App(){
     
     }
 
-    //  useEffect(() => {
-    //     console.log('User guesses the letter ' + userGuessLetter)
-    //  }, [userGuessLetter])
 
 
 
@@ -87,7 +88,7 @@ export default function App(){
     <main>
         <header>
             <h1>Assembly Endgame</h1>
-            <p>Guess the words within 8 attempts to keep the programming languages safe from assembly</p>
+            <p>Guess the words within {languages.length - 1} attempts to keep the programming languages safe from assembly</p>
         </header>
 
         <section className="game--status">

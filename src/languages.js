@@ -42,7 +42,7 @@ export const languages = [
     {
         name: "C++",
         backgroundColor: "silver",
-        color: "#F9F4DA",
+        color: "#1E1E1E",
     },
     {
         name: "Assembly",
