@@ -55,7 +55,6 @@ header > p{
 }
 
 .game--status{
-    background-color: #10A95B;
     width: 360px;
     height: 60px;
     display: flex;
@@ -65,10 +64,16 @@ header > p{
     border-radius: 5px;
     color: #F9FAD4;
     margin-block: 30px;
-
-    
-
 }
+
+.game--status.lost{
+    background-color: #BA2A2A;
+}
+
+.game--status.won{
+    background-color: #10A95B;
+}
+
 .game--status > p, h2{
     margin: 5px;
     

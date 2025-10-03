@@ -13,16 +13,14 @@ export default function App(){
     //get the number of wrong guesses byt filtering out the letters guessed which ARE not in the word
     //then use .length to show how many wrong guesses there has been 
     const wrongGuessCount = userGuessLetter.filter(letter => !currentWord.includes(letter)).length
+    const isGameLost = wrongGuessCount === languages.length - 1 // checks length of language array so dynamicaly calcs how many wrong guesses are allowed 
     
     
 
-    const correctGuess = currentWord.split("").every(letter => userGuessLetter.includes(letter)) // <--- could have also used this logic instead of reversing the wrongGuessCount logic
-
-    //opposite of prev line, conditions to conditionally render New Game button
-    
-
+    // logic to see if the guessed letters includes the current words letters
+    const isGameWon = currentWord.split("").every(letter => userGuessLetter.includes(letter)) 
     let isGameOver = false
-    if(wrongGuessCount === languages.length - 1 || correctGuess){ // checks length of language array so dynamicaly calcs how many wrong guesses are allowed 
+    if( isGameLost || isGameWon){ 
         isGameOver = true
     }
 
@@ -81,6 +79,18 @@ export default function App(){
     
     }
 
+    /* CONDITIONS TO DISPLAY THE STATUS IF GAME IS WON OR LOST */
+    let gameStatusH = ''
+    let gameStatusP = ''
+
+    if(isGameOver && isGameWon){
+        gameStatusH = 'You Win!'
+        gameStatusP = 'Well Done'
+    }
+    else if(isGameOver && isGameLost){
+        gameStatusH = 'Game Over'
+        gameStatusP = 'You Lose! Better start learning assembly'
+    }else{}
 
 
 
@@ -91,9 +101,9 @@ export default function App(){
             <p>Guess the words within {languages.length - 1} attempts to keep the programming languages safe from assembly</p>
         </header>
 
-        <section className="game--status">
-            <h2>You win</h2>
-            <p> Well done</p>
+        <section className={clsx("game--status",{lost: isGameLost, won: isGameWon})}>
+            {isGameOver && <h2>{gameStatusH}</h2>}
+            {isGameOver && <p>{gameStatusP}</p>}
         </section>
         
         <section className="language--section">{languageList}</section>
