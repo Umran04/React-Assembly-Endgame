@@ -18,7 +18,7 @@ export default function App(){
     const correctGuessCount = userGuessLetter.filter(letter => currentWord.includes(letter)).length === currentWord.length
 
     let isGameOver = false
-    if(wrongGuessCount === 8 || correctGuessCount){
+    if(wrongGuessCount === languages.length - 1 || correctGuessCount){
         isGameOver = true
     }
 
