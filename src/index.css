@@ -155,11 +155,11 @@ span.chips.lost::before{
     
 }
 
-.Correct{
+.correct{
     background-color: #10A95B;
 }
 
-.Wrong{
+.wrong{
     background-color: #EC5D49;
 }
 .newGame--btn{
