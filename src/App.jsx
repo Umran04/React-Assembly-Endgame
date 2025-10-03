@@ -18,7 +18,12 @@ export default function App(){
     
     
     /*LANGUAGE LIST*/
-    const languageList = languages.map( (language) => { return <span className="chips" key={language.name} 
+    const languageList = languages.map( (language, index) => { 
+
+    const className = clsx("chips",{ lost: index < wrongGuessCount })
+
+
+    return <span className={className} key={language.name} 
     style={ {backgroundColor: language.backgroundColor, color:language.color}}>
     {language.name}
     </span>
@@ -34,7 +39,13 @@ export default function App(){
         //cant write notes next to clsx stuff but this basically meanes, line 1 is just default keyboard--letters classname
         //line 2 is if the letter has been guessed and is in the word then make the letter green (.correct css class)
         //line 3 if the letter has been guessed and is not in the word then make it red (.wrong css class)
-        return <button onClick={() => userClick(letter)} className={clsx(
+        
+        //refactor the clsx
+       
+        
+        return <button onClick={() => userClick(letter)}
+        
+            className={clsx(
             "keyboard--letters",
             userGuessLetter.includes(letter) && currentWord.includes(letter) && "Correct",
             userGuessLetter.includes(letter) && !currentWord.includes(letter) && "Wrong")}>
