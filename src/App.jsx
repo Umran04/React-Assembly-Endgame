@@ -3,6 +3,7 @@ import { clsx } from "clsx";
 import { useState, useEffect } from "react";
 import { languages } from './languages.js'
 import {getFarewellText, getRandomWord} from './utils.js'
+import Confetti from 'react-confetti'
 
 export default function App(){
 
@@ -157,6 +158,7 @@ export default function App(){
 
     return(
     <main>
+        {(isGameOver && isGameWon) && <Confetti />}
         <header>
             <h1>Assembly Endgame</h1>
             <p>Guess the words within {languages.length - 1} attempts to keep the programming languages safe from assembly</p>
