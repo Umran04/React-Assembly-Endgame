@@ -72,6 +72,12 @@ header > p{
 
 .game--status.wrong{
     background-color: #7A5EA7;
+    border: 1px dashed #323232;
+}
+
+.game--status > p.wrong{
+    font-style: italic;
+    font-weight: 400;
 }
 
 .game--status > p, h2{
