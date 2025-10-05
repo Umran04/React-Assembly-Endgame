@@ -8,6 +8,7 @@ export default function App(){
     const alphabet = 'abcdefghijklmnopqrstuvwxyz'
     const [currentWord,setCurrentWord] = useState('loop')
     const [userGuessLetter,setUserGuessLetter] = useState([])
+    const [isWrongGuess,setIsWrongGuess] = useState(false)
 
     
     //get the number of wrong guesses byt filtering out the letters guessed which ARE not in the word
@@ -76,22 +77,46 @@ export default function App(){
         setUserGuessLetter(prevLetter =>
             prevLetter.includes(newLetter) ? prevLetter : [...prevLetter, newLetter] //checks if the letter is already in  the arr, if yes then it will NOT add it
         )
+
+        //checking if the current guess is correct or incorrect
+        if(!currentWord.includes(newLetter)){
+            setIsWrongGuess(true)
+        }else{
+            setIsWrongGuess(false)
+        }
     
     }
 
-    /* CONDITIONS TO DISPLAY THE STATUS IF GAME IS WON OR LOST */
-    let gameStatusH = ''
-    let gameStatusP = ''
+    
 
-    if(isGameOver && isGameWon){
-        gameStatusH = 'You Win!'
-        gameStatusP = 'Well Done'
+    //refactored so now its a function that determines the status of the game
+    function renderStatus(){
+        if(!isGameOver && isWrongGuess){
+            return(
+                <h2>Wrong Guess</h2>
+            )
+        }
+        if(!isGameOver){
+            return null
+        }
+
+        if(isGameOver && isGameWon){
+            return (
+                <>
+                    <h2>You Win!</h2>
+                    <p>Well Done</p>
+                </>
+            )
+        }
+        else if(isGameOver && isGameLost){
+            return (
+                <>
+                    <h2>You Lose</h2>
+                    <p>Better start learning Assembly</p>
+                </>
+            )
+        }
     }
-    else if(isGameOver && isGameLost){
-        gameStatusH = 'Game Over'
-        gameStatusP = 'You Lose! Better start learning assembly'
-    }else{}
-
 
 
     return(
@@ -101,9 +126,8 @@ export default function App(){
             <p>Guess the words within {languages.length - 1} attempts to keep the programming languages safe from assembly</p>
         </header>
 
-        <section className={clsx("game--status",{lost: isGameLost, won: isGameWon})}>
-            {isGameOver && <h2>{gameStatusH}</h2>}
-            {isGameOver && <p>{gameStatusP}</p>}
+        <section className={clsx("game--status",{lost: isGameLost, won: isGameWon, wrong: !isGameOver && isWrongGuess})}>
+            {renderStatus()}
         </section>
         
         <section className="language--section">{languageList}</section>
