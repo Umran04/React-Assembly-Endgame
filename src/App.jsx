@@ -2,6 +2,7 @@ import React from "react";
 import { clsx } from "clsx";
 import { useState, useEffect } from "react";
 import { languages } from './languages.js'
+import {getFarewellText} from './utils.js'
 
 export default function App(){
 
@@ -9,6 +10,7 @@ export default function App(){
     const [currentWord,setCurrentWord] = useState('loop')
     const [userGuessLetter,setUserGuessLetter] = useState([])
     const [isWrongGuess,setIsWrongGuess] = useState(false)
+    const [fareWellText,setFareWellText] = useState([])
 
     
     //get the number of wrong guesses byt filtering out the letters guessed which ARE not in the word
@@ -87,13 +89,22 @@ export default function App(){
     
     }
 
+
+    /*FUNCTINOALITY  TO MAKE SURE THAT IF USER GETS INCRORRECT LETTER, A RANDOM MSG GET DISPLAYED*/
+    useEffect( () => {
+        const langJustLost = languages[wrongGuessCount -1]
+        if(langJustLost){
+            setFareWellText(getFarewellText(languages[wrongGuessCount - 1].name))
+        }
+    }, [wrongGuessCount])
+
     
 
     //refactored so now its a function that determines the status of the game
     function renderStatus(){
         if(!isGameOver && isWrongGuess){
             return(
-                <h2>Wrong Guess</h2>
+                <h2>{fareWellText}</h2>
             )
         }
         if(!isGameOver){
