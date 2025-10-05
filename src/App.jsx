@@ -2,12 +2,12 @@ import React from "react";
 import { clsx } from "clsx";
 import { useState, useEffect } from "react";
 import { languages } from './languages.js'
-import {getFarewellText} from './utils.js'
+import {getFarewellText, getRandomWord} from './utils.js'
 
 export default function App(){
 
     const alphabet = 'abcdefghijklmnopqrstuvwxyz'
-    const [currentWord,setCurrentWord] = useState('loop')
+    const [currentWord,setCurrentWord] = useState('')
     const [userGuessLetter,setUserGuessLetter] = useState([])
     const [isWrongGuess,setIsWrongGuess] = useState(false)
     const [fareWellText,setFareWellText] = useState([])
@@ -101,6 +101,10 @@ export default function App(){
         }
     }, [wrongGuessCount])
 
+    /* RANDOMLY GENRATING A NEW WORD*/
+    useEffect( () =>{
+        setCurrentWord(getRandomWord())
+    },[])
     
 
     //refactored so now its a function that determines the status of the game
