@@ -67,9 +67,12 @@ export default function App(){
         //based on correct or incorrect guesses apply the class name to change its style
        
         
-        return <button onClick={() => userClick(letter)}
-            className={className}>
-            {letter.toUpperCase()} 
+        return <button 
+            onClick={() => userClick(letter)}
+            className={className}
+            disabled={isGameOver}>
+            {letter.toUpperCase()}
+            
             </button>
         }
     )
@@ -104,7 +107,7 @@ export default function App(){
     function renderStatus(){
         if(!isGameOver && isWrongGuess){
             return(
-                <h2>{fareWellText}</h2>
+                <h2 className="isWrongText">{fareWellText}</h2>
             )
         }
         if(!isGameOver){
