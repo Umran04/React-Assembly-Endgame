@@ -136,6 +136,11 @@ export default function App(){
         }
     }
 
+    function resetGame(){
+        setCurrentWord(getRandomWord())
+        setUserGuessLetter([])
+    }
+
 
     return(
     <main>
@@ -154,7 +159,7 @@ export default function App(){
 
         <section className="keyboard">{keyboard}</section>
 
-        {isGameOver && <button className="newGame--btn">New Game</button>}
+        {isGameOver && <button onClick={resetGame} className="newGame--btn">New Game</button>}
     </main>
     )
 }
