@@ -141,6 +141,8 @@ span.chips.lost::before{
     padding: 25px;
 }
 
+
+
 .keyboard{
     display: flex;
     flex-wrap: wrap;

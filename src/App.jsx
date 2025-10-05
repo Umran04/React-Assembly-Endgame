@@ -48,9 +48,20 @@ export default function App(){
     </span>
     })
 
-    /*THE WORD / LETTERS TO BE DISPLAYED IF GUESSED CORRECTLY*/
-    const letters = currentWord.split('').map((letter) => { 
-        return <span className="letters">{ userGuessLetter.includes(letter) && letter.toUpperCase()}</span>
+    /*THE WORD / LETTERS TO BE DISPLAYED IF GUESSED CORRECTLY AND DISPLAYS THE NOT GUESSED LETTERS IF THE GAME IS OVER AND USER HAS LOST*/
+
+    function displayLetter(letter){
+        if(userGuessLetter.includes(letter)){
+            return letter.toUpperCase()
+        }else if(!userGuessLetter.includes(letter) && isGameOver){
+            return letter.toUpperCase()
+        }else{}
+    }
+    const letters = currentWord.split('').map((letter) => {
+        return  <span style={{color: !userGuessLetter.includes(letter) && isGameOver ? 'red' : '' }}
+         className="letters"> 
+         { displayLetter(letter)}
+        </span>
     })
 
     /*KEYBOARD*/
@@ -136,6 +147,8 @@ export default function App(){
         }
     }
 
+
+    /*NEW GAM BUTTON RESET*/
     function resetGame(){
         setCurrentWord(getRandomWord())
         setUserGuessLetter([])
