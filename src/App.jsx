@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { languages } from './languages.js'
 import {getFarewellText, getRandomWord} from './utils.js'
 import Confetti from 'react-confetti'
+import 'animate.css'
 
 export default function App(){
 
@@ -157,6 +158,8 @@ export default function App(){
         setIsWrongGuess(0)
     }
 
+
+    /*Scroll into view of new game button*/
     useEffect(() =>{
         if(isGameOver && newButtonRef.current){
             newButtonRef.current.scrollIntoView({behaviour: 'smooth'})
@@ -179,7 +182,7 @@ export default function App(){
         
         <section className="language--section">{languageList}</section>
 
-        <section className="letters--container">{letters}</section>
+        <section className={clsx("letters--container", "animate__animated", isGameLost && 'animate__shakeX')}>{letters}</section>
 
         <section className="numOfGuess">You have: <span style={{color: '#EC5D49'}}>{(languages.length - 1) - wrongGuessCount}</span> guesses remaining</section>
 
