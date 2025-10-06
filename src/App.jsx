@@ -172,6 +172,8 @@ export default function App(){
 
         <section className="letters--container">{letters}</section>
 
+        <section className="numOfGuess">You have: <span className="guessCount">{(languages.length - 1) - wrongGuessCount}</span> guesses remaining</section>
+
         <section className="keyboard">{keyboard}</section>
 
         {isGameOver && <button onClick={resetGame} className="newGame--btn">New Game</button>}

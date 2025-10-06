@@ -121,7 +121,7 @@ span.chips.lost::before{
 
 .letters--container{
     margin-top: 50px;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     display: flex;
     /* flex-direction: row; */
     /* justify-content: center; */
@@ -186,6 +186,18 @@ span.chips.lost::before{
     font-size: 0.975rem;
     font-weight: 600;
     color: #1E1E1E;
+}
+
+section.numOfGuess{
+    border: 1px dashed #FCBA29;
+    margin-bottom: 50px;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.guessCount{
+    font-style: italic;
+    color:#EC5D49 ;
 }
 
 
