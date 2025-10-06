@@ -1,6 +1,6 @@
 import React from "react";
 import { clsx } from "clsx";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { languages } from './languages.js'
 import {getFarewellText, getRandomWord} from './utils.js'
 import Confetti from 'react-confetti'
@@ -12,6 +12,7 @@ export default function App(){
     const [userGuessLetter,setUserGuessLetter] = useState([])
     const [isWrongGuess,setIsWrongGuess] = useState(false)
     const [fareWellText,setFareWellText] = useState([])
+    const newButtonRef = useRef(null)
 
     
     //get the number of wrong guesses byt filtering out the letters guessed which ARE not in the word
@@ -156,6 +157,13 @@ export default function App(){
         setIsWrongGuess(0)
     }
 
+    useEffect(() =>{
+        if(isGameOver && newButtonRef.current){
+            newButtonRef.current.scrollIntoView({behaviour: 'smooth'})
+            newButtonRef.current.focus()
+        }
+    }, [isGameOver])
+
 
     return(
     <main>
@@ -177,7 +185,7 @@ export default function App(){
 
         <section className="keyboard">{keyboard}</section>
 
-        {isGameOver && <button onClick={resetGame} className="newGame--btn">New Game</button>}
+        {isGameOver && <button onClick={resetGame} ref={newButtonRef} className="newGame--btn">New Game</button>}
     </main>
     )
 }
