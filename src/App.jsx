@@ -153,12 +153,13 @@ export default function App(){
     function resetGame(){
         setCurrentWord(getRandomWord())
         setUserGuessLetter([])
+        setIsWrongGuess(0)
     }
 
 
     return(
     <main>
-        {(isGameOver && isGameWon) && <Confetti />}
+        {(isGameOver && isGameWon) && <Confetti recycle={false} numberOfPieces={1000}  />}
         <header>
             <h1>Assembly Endgame</h1>
             <p>Guess the words within {languages.length - 1} attempts to keep the programming languages safe from assembly</p>
@@ -172,7 +173,7 @@ export default function App(){
 
         <section className="letters--container">{letters}</section>
 
-        <section className="numOfGuess">You have: <span className="guessCount">{(languages.length - 1) - wrongGuessCount}</span> guesses remaining</section>
+        <section className="numOfGuess">You have: <span style={{color: '#EC5D49'}}>{(languages.length - 1) - wrongGuessCount}</span> guesses remaining</section>
 
         <section className="keyboard">{keyboard}</section>
 
